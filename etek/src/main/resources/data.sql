@@ -1,0 +1,1 @@
+INSERT INTO DEPARTMENTS (department_id, department_name, manager_id) VALUES (1, 'Computer', 1);
