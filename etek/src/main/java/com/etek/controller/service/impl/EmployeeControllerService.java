@@ -81,8 +81,13 @@ public class EmployeeControllerService implements IEmployeeControllerService{
 
 	@Override
 	public EtekResponse deleteEmployee(long id) {
-		employeeDao.deleteById(id);
-		return new EtekResponse(1, "record deleted!");
+		if(employeeDao.findById(id).isPresent()) {
+			employeeDao.deleteById(id);
+			return new EtekResponse(1, String.format("Record with id [ %s ] deleted from system!", id));
+		}else {
+			return new EtekResponse(0, String.format("unable to delete record. Record with id [ %s ] not found!", id));
+		}
+		
 	}
 	
 	@Override
